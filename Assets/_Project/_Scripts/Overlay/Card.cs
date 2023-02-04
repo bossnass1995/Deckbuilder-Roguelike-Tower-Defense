@@ -20,10 +20,6 @@ public class Card :
 
   public void OnPointerEnter(PointerEventData eventData) {
     transform.localScale += new Vector3(0.25F, 0.25f, 0);
-    Hand hand = transform.parent.GetComponent<Hand>();
-    if (hand != null) {
-      hand.OnPointerEnter(eventData);
-    }
   }
   
   public void OnPointerExit(PointerEventData eventData) {

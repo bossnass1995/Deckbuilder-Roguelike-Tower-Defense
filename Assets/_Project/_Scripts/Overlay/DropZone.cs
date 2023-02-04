@@ -10,6 +10,7 @@ public class DropZone :
   public Color startingColor;
   public Color hoverColor;
   public bool placeTroop;
+  public bool cancels;
   public bool overrideDropEvent;
   public bool overridePlacement;
 
@@ -21,11 +22,16 @@ public class DropZone :
 
   public void OnDrop(PointerEventData eventData) {
     Debug.Log("OnDrop");
+    ResetSize();
+    dropZoneBackground.color = startingColor;
     if (overrideDropEvent) return;
     if (eventData.pointerDrag != null) {
+      if (cancels) {
+        eventData.pointerDrag.GetComponent<Draggable>()?.Cancel();
+        return;
+      }
       var draggable = eventData.pointerDrag.GetComponent<RectTransform>();
       draggable.SetParent(this.transform);
-      dropZoneBackground.color = startingColor;
       if (overridePlacement) {
         draggable.transform.position = this.transform.position;
       }
@@ -36,6 +42,7 @@ public class DropZone :
     // If the pointer is dragging something, highlight the drop zone
     if (overrideDropEvent) return;
     if (eventData.pointerDrag != null) {
+      if (cancels) transform.localScale += new Vector3(0.25f, 0.25f, 0);
       Debug.Log("OnPointerEnter with " + eventData.pointerDrag.ToString());
       dropZoneBackground.color = hoverColor;
       var draggable = eventData.pointerDrag;
@@ -47,6 +54,11 @@ public class DropZone :
 
   public void OnPointerExit(PointerEventData eventData) {
     if (overrideDropEvent) return;
+    ResetSize();
     dropZoneBackground.color = startingColor;
+  }
+
+  private void ResetSize() {
+    transform.localScale = new Vector3(1f, 1f, 1f);
   }
 }

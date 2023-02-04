@@ -3,21 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Overlay : MonoBehaviour {
-  private List<GameObject> overlayElements;
+  [SerializeField] private Hand hand;
+  private Animator anim;
   
   [SerializeField] private GameObject cancelZone;
 
   void Awake() {
-    overlayElements = new List<GameObject>(GameObject.FindGameObjectsWithTag("Overlay"));
+    anim = gameObject.GetComponent<Animator>();
   }
 
   public void HideOverlay() {
-    overlayElements.ForEach(x => x.SetActive(false));
-    cancelZone.SetActive(true);
+    if (anim?.GetBool("Hidden") == false) {
+      anim?.SetTrigger("Hide");
+      anim?.SetBool("Hidden", true);
+      hand.Hide();
+      cancelZone.SetActive(true);
+    }
   }
 
   public void ShowOverlay() {
-    overlayElements.ForEach(x => x.SetActive(true));
-    cancelZone.SetActive(false);
+    if (anim?.GetBool("Hidden") == true) {
+      anim?.SetTrigger("Show");
+      anim?.SetBool("Hidden", false);
+      hand.Show();
+      cancelZone.SetActive(false);
+    }
   }
 }
