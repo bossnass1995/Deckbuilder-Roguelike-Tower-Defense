@@ -224,6 +224,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 606736026}
     m_Modifications:
+    - target: {fileID: 573887991814425200, guid: 6a6f81a24282544389d1c4348165b1a7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4945014984494256983, guid: 6a6f81a24282544389d1c4348165b1a7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -308,6 +312,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5599285326593346563, guid: 6a6f81a24282544389d1c4348165b1a7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7425660901711106466, guid: 6a6f81a24282544389d1c4348165b1a7, type: 3}
       propertyPath: canvas
       value: 
@@ -319,6 +327,10 @@ PrefabInstance:
     - target: {fileID: 8139402560746156942, guid: 6a6f81a24282544389d1c4348165b1a7, type: 3}
       propertyPath: m_Name
       value: Card
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139402560746156942, guid: 6a6f81a24282544389d1c4348165b1a7, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a6f81a24282544389d1c4348165b1a7, type: 3}
@@ -335,7 +347,7 @@ GameObject:
   - component: {fileID: 606736029}
   - component: {fileID: 606736028}
   - component: {fileID: 606736027}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,7 +612,7 @@ MonoBehaviour:
   hoverColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
   placeTroop: 0
   overrideDropEvent: 0
-  overridePlacement: 0
+  overridePlacement: 1
 --- !u!114 &1094453990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -806,7 +818,7 @@ GameObject:
   - component: {fileID: 1982848928}
   - component: {fileID: 1982848930}
   - component: {fileID: 1982848929}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,7 +935,7 @@ GameObject:
   - component: {fileID: 2137105602}
   - component: {fileID: 2137105604}
   - component: {fileID: 2137105603}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Deck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

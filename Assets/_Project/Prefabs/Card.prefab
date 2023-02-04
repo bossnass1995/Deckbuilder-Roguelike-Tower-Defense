@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5229915174963032418}
   - component: {fileID: 4665664600269583062}
   - component: {fileID: 2301371515202386958}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: TowerState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 1863765734930865623}
   - component: {fileID: 5118242548379106765}
   - component: {fileID: 1741345606954684845}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: CardState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 7425660901711106466}
   - component: {fileID: 9135953228243742432}
   - component: {fileID: 1561189389067820189}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
