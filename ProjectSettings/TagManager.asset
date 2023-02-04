@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - FxTemporaire
   - Overlay
   - Hand
   layers:
@@ -46,4 +47,7 @@ TagManager:
     locked: 0
   - name: Towers
     uniqueID: 4078305581
+    locked: 0
+  - name: VFX
+    uniqueID: 2727357033
     locked: 0
