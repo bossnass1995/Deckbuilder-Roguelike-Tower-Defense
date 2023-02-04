@@ -12,6 +12,7 @@ public class Draggable :
   private CanvasGroup cardCanvasGroup;
   [SerializeField] private GameObject towerState;
   [SerializeField] private GameObject cardState;
+  [SerializeField] private Overlay overlay;
 
   public void Awake() {
     cardCanvasGroup = GetComponent<CanvasGroup>();
@@ -23,6 +24,7 @@ public class Draggable :
     cardCanvasGroup.blocksRaycasts = false;
     cardCanvasGroup.alpha = 0.6f;
     this.transform.SetParent(draggingZone.transform);
+    overlay.HideOverlay();
   }
 
   public void OnDrag(PointerEventData eventData) {
@@ -33,6 +35,7 @@ public class Draggable :
     Debug.Log("OnEndDrag");
     cardCanvasGroup.blocksRaycasts = true;
     cardCanvasGroup.alpha = 1f;
+    overlay.ShowOverlay();
   }
 
   public void OnPointerDown(PointerEventData eventData) {
@@ -47,5 +50,13 @@ public class Draggable :
   public void MoveCardState() {
     cardState.SetActive(true);
     towerState.SetActive(false);
+  }
+
+  public void ChangeDraggableState(bool placeTroop = false) {
+    if (placeTroop) {
+      PlaceTroopState();
+    } else {
+      MoveCardState();
+    }
   }
 }
