@@ -7,6 +7,7 @@ public class WaveSpawner : MonoBehaviour
     public Transform enemyPrefab;
 
     [SerializeField] public Transform spawnPoint;
+    [SerializeField] private ObjectPool enemyPool;
 
     public float timeBetweenWaves = 5f;
     private float countdown = 2f;
@@ -25,9 +26,12 @@ public class WaveSpawner : MonoBehaviour
     }
 
     IEnumerator SpawnWave(int waveSpacingCount) {
+        Debug.Log("Inside SpawnWave()");
         waveIndex++;
         for (int i = 0; i < waveIndex; i++) {
-            SpawnEnemy();
+            GameObject newEnemy = enemyPool.GetObjectFromPool();
+            newEnemy.transform.position = spawnPoint.position;
+            newEnemy.SetActive(true);
             yield return new WaitForSeconds(0.3f);
         }
     }
