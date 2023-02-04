@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 509f95984414f484c8b4fa56a4abe5d0
+guid: dd178de76baf9094687f7a314b131cfa
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -11,7 +11,7 @@ ScriptedImporter:
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     fadeOut: 0
     borderMipMap: 0
     mipMapsPreserveCoverage: 0
@@ -30,7 +30,7 @@ ScriptedImporter:
     sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
-    spriteMeshType: 0
+    spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
     spritePixelsToUnits: 100
@@ -91,18 +91,18 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Directions
+  - name: Blood Particle
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 2172
-      width: 3500
-      height: 414
-    spriteID: 2bc912b2bb0337f4fbeb9374263e5da2
+      x: 907
+      y: 4
+      width: 91
+      height: 98
+    spriteID: 86f9db2baf0a87c48a205eccff4ca64e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -111,8 +111,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -137, y: 2035}
-  - name: Path
+    uvTransform: {x: 777, y: -818}
+  - name: BloodDecal
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -121,9 +121,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 3840
-      height: 2160
-    spriteID: 5f52fcf18fa0a2f41916ec56724b6a11
+      width: 895
+      height: 671
+    spriteID: 9b3677b20e3729a418d57537f2658f33
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -132,7 +132,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: -106, y: -81}
   characterData:
     bones: []
     parts: []
@@ -146,40 +146,7 @@ ScriptedImporter:
     dimension: {x: 0, y: 0}
     characterGroups: []
     boneReadOnly: 0
-  platformSettings:
-  - name: DefaultTexturePlatform
-    overridden: 0
-    maxTextureSize: 4096
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 100
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 1
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Server
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
+  platformSettings: []
   mosaicLayers: 1
   characterMode: 1
   documentPivot: {x: 0, y: 0}
@@ -196,32 +163,22 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Directions
-    spriteName: Directions
+  - name: Blood Particle
+    spriteName: Blood Particle
     isGroup: 0
     parentIndex: -1
-    spriteID: 2bc912b2bb0337f4fbeb9374263e5da2
-    layerID: 4
-    mosaicPosition: {x: 4, y: 2172}
+    spriteID: 86f9db2baf0a87c48a205eccff4ca64e
+    layerID: 22
+    mosaicPosition: {x: 907, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Layer 1
-    spriteName: 
+  - name: BloodDecal
+    spriteName: BloodDecal
     isGroup: 0
     parentIndex: -1
-    spriteID: b21da5a37ef3b7e4482666ddfb9c2650
-    layerID: 10
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 0
-  - name: Path
-    spriteName: Path
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 5f52fcf18fa0a2f41916ec56724b6a11
-    layerID: 7
+    spriteID: 9b3677b20e3729a418d57537f2658f33
+    layerID: 14
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
