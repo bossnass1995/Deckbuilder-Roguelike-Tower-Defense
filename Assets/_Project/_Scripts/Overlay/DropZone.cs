@@ -40,7 +40,7 @@ public class DropZone :
       dropZoneBackground.color = hoverColor;
       var draggable = eventData.pointerDrag;
       if (draggable != null) {
-        ChangeDraggableState(draggable.GetComponent<Draggable>());
+        draggable.GetComponent<Draggable>()?.ChangeDraggableState(placeTroop);
       }
     }
   }
@@ -48,13 +48,5 @@ public class DropZone :
   public void OnPointerExit(PointerEventData eventData) {
     if (overrideDropEvent) return;
     dropZoneBackground.color = startingColor;
-  }
-
-  private void ChangeDraggableState(Draggable draggable) {
-    if (placeTroop) {
-      draggable?.PlaceTroopState();
-    } else {
-      draggable?.MoveCardState();
-    }
   }
 }
