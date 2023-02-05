@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem[] _deathParticles;
     [SerializeField] public float EnemySpeed = 60f;
     private float DistTraveledPerTimestep => EnemySpeed * Time.fixedDeltaTime;
     public float TotalDistanceTraveled = 0f;
@@ -40,6 +41,7 @@ public class Enemy : MonoBehaviour
         // (MAYBE) perform distance calculation so we don't move less than the correct enemy speed
         // for cycles before corners
 
+        MaybeFlipSprite(vectorToMove);
         transform.Translate(vectorToMove, Space.World);
         TotalDistanceTraveled += vectorToMove.magnitude;
     }
@@ -62,6 +64,7 @@ public class Enemy : MonoBehaviour
         currentHealth = currentHealth - damage;
 
         if (currentHealth <= 0f) {
+            OnDeath();
             ResetEnemy();
             gameObject.SetActive(false);
         }
@@ -73,5 +76,38 @@ public class Enemy : MonoBehaviour
         nextWaypoint = Waypoints.points[1];
         TotalDistanceTraveled = 0f;
         waypointIndex = 0;
+        // If sprite is still flipped, revert to normal
+        if(transform.GetChild(0).transform.localScale.x < 0) {
+            transform.GetChild(0).transform.localScale = new Vector3(
+                transform.GetChild(0).transform.localScale.x * -1f,
+                transform.GetChild(0).transform.localScale.y,
+                transform.GetChild(0).transform.localScale.z
+            );
+        }
+    }
+
+    void MaybeFlipSprite(Vector3 vectorToMove) {
+        Transform enemyChild = transform.GetChild(0);
+        Vector3 childScale = enemyChild.transform.localScale;
+        if ((vectorToMove.x < 0 && childScale.x > 0) || 
+            (vectorToMove.x > 0 && childScale.x < 0)) {
+            enemyChild.transform.localScale = new Vector3(
+                -childScale.x,
+                childScale.y,
+                childScale.z
+            );
+        }
+    }
+
+    void OnDeath() {
+        //instantiate particles
+        foreach (var particle in _deathParticles)
+        {
+            Instantiate(particle, transform.position, Quaternion.identity);
+        }
+        
+        //leave decal
+        // DecalController decalController = GetComponent<DecalController>();
+        // decalController.MakeDecal(transform);
     }
 }
