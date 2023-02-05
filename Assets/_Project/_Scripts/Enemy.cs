@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float startingHealth = 2f;
     private float currentHealth;
 
-    void Start()
+    void OnEnable()
     {
         // Movement
         previousWaypoint = Waypoints.points[0];

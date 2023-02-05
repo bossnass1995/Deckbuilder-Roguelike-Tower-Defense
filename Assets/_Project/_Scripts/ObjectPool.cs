@@ -36,23 +36,4 @@ public class ObjectPool : MonoBehaviour
         objectPool.Add(newObject);
         return newObject;
     }
-
-    public GameObject GetObjectFromPool(Transform _transform)
-    {
-        // Find an inactive obj in the pool
-        foreach (GameObject obj in objectPool)
-        {
-            if (!obj.activeInHierarchy)
-            {
-                obj.transform.position = _transform.position;
-                obj.SetActive(true);
-                return obj;
-            }
-        }
-
-        // If all enemies are in use, instantiate a new one
-        GameObject newObject = Instantiate(objectPrefab, _transform);
-        objectPool.Add(newObject);
-        return newObject;
-    }
 }

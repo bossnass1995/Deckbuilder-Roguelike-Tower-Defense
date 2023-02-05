@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float travelSpeed = 1f;
+    [SerializeField] private float travelSpeed = 5f;
+    [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float damage = 1f;
 
     private Transform spawnLocation;
@@ -14,9 +15,10 @@ public class Bullet : MonoBehaviour
     void FixedUpdate()
     {
         if (_target != null) {
+            transform.position = Vector3.MoveTowards(transform.position, _target.position, travelSpeed * Time.fixedDeltaTime);
             Vector3 travelDirection = (_target.position - transform.position).normalized;
-
-            transform.position = Vector3.Lerp(transform.position, _target.position, travelSpeed * Time.fixedDeltaTime);
+            Quaternion lookRotation = Quaternion.LookRotation(Vector3.back, travelDirection);
+            transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, rotationSpeed * Time.fixedDeltaTime);
 
             float distanceToEnemy = Vector3.Distance(transform.position, _target.position);
             if (distanceToEnemy < 0.1f) {

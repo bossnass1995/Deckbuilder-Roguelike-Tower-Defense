@@ -31,8 +31,10 @@ public class Tower : MonoBehaviour
         
         if (fireCountdown <= 0f && _target != null && !bulletFired) {
             fireCountdown = secBetweenShots;
-            Bullet bullet = bulletPool.GetObjectFromPool(bulletSpawnLocation).GetComponent<Bullet>();
-            bullet.TargetEnemy(_target);
+            GameObject bulletObj = bulletPool.GetObjectFromPool();
+            bulletObj.transform.position = bulletSpawnLocation.position;
+            bulletObj.transform.rotation = bulletSpawnLocation.rotation;
+            bulletObj.GetComponent<Bullet>().TargetEnemy(_target);
         }
     }
 
@@ -74,9 +76,5 @@ public class Tower : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion lookRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         partToSwivel.transform.rotation = Quaternion.Slerp(partToSwivel.transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
-    }
-
-    public void BulletHit() {
-        bulletFired = false;
     }
 }
