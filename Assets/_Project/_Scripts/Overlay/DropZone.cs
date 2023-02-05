@@ -18,15 +18,17 @@ public class DropZone :
 
   private void Awake() {
     dropZoneBackground = this.transform.GetComponent<Image>();
+    if (dropZoneBackground == null) {
+      dropZoneBackground = this.transform.GetChild(0).GetComponent<Image>();
+    }
   }
 
   public void OnDrop(PointerEventData eventData) {
-    Debug.Log("OnDrop");
-    ResetSize();
     dropZoneBackground.color = startingColor;
     if (overrideDropEvent) return;
     if (eventData.pointerDrag != null) {
       if (cancels) {
+        ResetSize();
         eventData.pointerDrag.GetComponent<Draggable>()?.Cancel();
         return;
       }
@@ -54,7 +56,7 @@ public class DropZone :
 
   public void OnPointerExit(PointerEventData eventData) {
     if (overrideDropEvent) return;
-    ResetSize();
+    if (cancels) ResetSize();
     dropZoneBackground.color = startingColor;
   }
 
