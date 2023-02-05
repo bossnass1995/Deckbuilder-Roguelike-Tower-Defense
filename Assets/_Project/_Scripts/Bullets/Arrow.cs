@@ -2,16 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Arrow : Bullet
 {
     [SerializeField] private float travelSpeed = 5f;
     [SerializeField] private float rotationSpeed = 10f;
-    [SerializeField] private float damage = 1f;
-
+    
     private Transform spawnLocation;
     
-    private Transform _target = null;
-
     void FixedUpdate()
     {
         if (_target != null) {
@@ -23,14 +20,10 @@ public class Bullet : MonoBehaviour
             float distanceToEnemy = Vector3.Distance(transform.position, _target.position);
             if (distanceToEnemy < 0.1f) {
                 // TODO trigger vfx on hit
-                _target.GetComponent<Enemy>().TakeDamage(damage);
+                _target.GetComponent<Enemy>().TakeDamage(damage, bossKillingMultiplier);
                 _target = null;
                 gameObject.SetActive(false);
             }
         }
-    }
-
-    public void TargetEnemy(Transform _transform) {
-        _target = _transform;
     }
 }

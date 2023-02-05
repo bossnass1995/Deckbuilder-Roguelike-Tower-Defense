@@ -4,31 +4,24 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public Transform enemyPrefab;
-
     [SerializeField] public Transform spawnPoint;
-    [SerializeField] private ObjectPool enemyPool;
+    [SerializeField] private ObjectPool babyCthuluPool;
+    [SerializeField] private ObjectPool bigCthuluPool;
 
-    public float timeBetweenWaves = 5f;
-    private float countdown = 2f;
-
-    private int waveIndex = 0;
-    private int waveSpacingCount = 1;
+    private int numberOfEnemiesInWave = 0;
 
     void Update() {
-        if (countdown <= 0f) {
-            StartCoroutine(SpawnWave(waveSpacingCount));
-            countdown = timeBetweenWaves;
-            waveSpacingCount++;
+        if (Input.GetMouseButtonDown(0)) {
+            numberOfEnemiesInWave++;
+            StartCoroutine(SpawnWave(numberOfEnemiesInWave, babyCthuluPool));
         }
-
-        countdown -= Time.deltaTime;
+        if (Input.GetMouseButtonDown(1)) {
+            StartCoroutine(SpawnWave(1, bigCthuluPool));
+        }
     }
 
-    IEnumerator SpawnWave(int waveSpacingCount) {
-        Debug.Log("Inside SpawnWave()");
-        waveIndex++;
-        for (int i = 0; i < waveIndex; i++) {
+    IEnumerator SpawnWave(int numberOfEnemiesInWave, ObjectPool enemyPool) {
+        for (int i = 0; i < numberOfEnemiesInWave; i++) {
             GameObject newEnemy = enemyPool.GetObjectFromPool();
             newEnemy.transform.position = spawnPoint.position;
             newEnemy.SetActive(true);
@@ -36,7 +29,5 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
-    void SpawnEnemy() {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-    }
+    
 }

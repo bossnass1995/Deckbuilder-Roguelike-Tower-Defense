@@ -5,21 +5,23 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour 
 {
-    private Transform _target;
-    
-    private string enemyTag = "Enemy";
-    [SerializeField] private float _range;
-    [SerializeField] private GameObject partToSwivel;
-    [SerializeField] private float rotationSpeed;
     [SerializeField] bool targetFarthestTraveledEnemy = true; // if false, targets nearest enemy to tower
 
+    // All towers
+    [SerializeField] private float _range;
     [SerializeField] private float fireRate = 1f; // in bullets per second
     private float secBetweenShots => 1f / fireRate;
+
+    // Ballista
+    [SerializeField] private GameObject partToSwivel;
+    [SerializeField] private float rotationSpeed;
     [SerializeField] private ObjectPool bulletPool;
     [SerializeField] private Transform bulletSpawnLocation;
 
     private bool bulletFired = false;
     private float fireCountdown;
+    private Transform _target;
+    private string enemyTag = "Enemy";
 
     private void OnEnable() {
         fireCountdown = secBetweenShots;

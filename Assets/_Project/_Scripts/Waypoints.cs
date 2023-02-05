@@ -13,4 +13,13 @@ public class Waypoints : MonoBehaviour
             points[i] = transform.GetChild(i);
         }
     }
+
+    public int FindNextWaypointIndex(Transform nextWaypoint) {
+        for (int i = 0; i < points.Length; i++) {
+            if (nextWaypoint == points[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }

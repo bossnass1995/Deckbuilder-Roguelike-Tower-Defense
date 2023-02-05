@@ -6,21 +6,30 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private ParticleSystem[] _deathParticles;
     [SerializeField] public float EnemySpeed = 60f;
+    [SerializeField] public bool IsBoss = false;
     private float DistTraveledPerTimestep => EnemySpeed * Time.fixedDeltaTime;
     public float TotalDistanceTraveled = 0f;
 
     private Transform previousWaypoint;
     private Transform nextWaypoint;
     private int waypointIndex;
+    private Waypoints waypoints;
     
     [SerializeField] public float startingHealth = 2f;
     private float currentHealth;
 
+    void Awake() {
+        waypoints = GameObject.Find("Waypoints").GetComponent<Waypoints>();
+    }
+
     void OnEnable()
     {
         // Movement
+        waypointIndex = 0;
         previousWaypoint = Waypoints.points[0];
         nextWaypoint = Waypoints.points[1];
+
+        TotalDistanceTraveled = 0f;
 
         // Health
         currentHealth = startingHealth;
@@ -46,12 +55,6 @@ public class Enemy : MonoBehaviour
         TotalDistanceTraveled += vectorToMove.magnitude;
     }
 
-    void Update() {
-        if (Input.GetMouseButtonDown(0)) {
-            TakeDamage(1f);
-        }
-    }
-
     void EnterNextSegment() {
         previousWaypoint = Waypoints.points[waypointIndex];
         if (waypointIndex < Waypoints.points.Length - 1) {
@@ -60,7 +63,37 @@ public class Enemy : MonoBehaviour
         nextWaypoint = Waypoints.points[waypointIndex];
     }
 
-    public void TakeDamage(float damage) {
+    public Vector3 GetFutureLocation(float lookaheadTime) {
+        // Start with lookaheadTime seconds
+        // Find next waypoint vector
+        int lookaheadWaypointIndex = waypoints.FindNextWaypointIndex(nextWaypoint);
+        Transform lookaheadWaypoint = Waypoints.points[lookaheadWaypointIndex];
+        float distanceToNextWaypoint = Vector3.Distance(
+            transform.position, 
+            lookaheadWaypoint.position
+        );
+        float timeToNextWaypoint = distanceToNextWaypoint / EnemySpeed;
+        // If lookahead time is greater than that time,
+        while (lookaheadTime > timeToNextWaypoint) {
+            // Subtract that time from lookahead time
+            lookaheadTime -= timeToNextWaypoint;
+            // Repeat for next waypoint
+            distanceToNextWaypoint = Vector3.Distance(
+                Waypoints.points[lookaheadWaypointIndex].position, 
+                Waypoints.points[++lookaheadWaypointIndex].position
+            );
+            lookaheadWaypoint = Waypoints.points[++lookaheadWaypointIndex].position;
+            timeToNextWaypoint = distanceToNextWaypoint / EnemySpeed;
+        }
+        
+            // If lookahead time is smaller than that time,
+            // Calculate vector location with remaining time
+    }
+
+    public void TakeDamage(float damage, float bossKillingMultiplier) {
+        if (IsBoss) {
+            damage = damage * bossKillingMultiplier;
+        }
         currentHealth = currentHealth - damage;
 
         if (currentHealth <= 0f) {
