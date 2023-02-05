@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/_Project/Scenes/Jacob's Game Test/Jacob's Game Test.unity
+    guid: 64dd63f04ad2345728311cffd920e20f
+  - enabled: 1
+    path: Assets/_Project/Scenes/Jacob's Game Test/Jacob's Game Copy.unity
+    guid: b6bf6043a7640435a9c47bb440a69f75
+  - enabled: 1
+    path: Assets/_Project/Scenes/Jacob's Game Test/Jacob's Overlay Copy.unity
+    guid: b911f23619ec243b3bbf79055e71ddad
   m_configObjects: {}

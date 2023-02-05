@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
+      if (nextWaypoint != null) {
         Vector3 vecToNextWaypoint = nextWaypoint.position - transform.position;
         Vector3 moveDirection = vecToNextWaypoint.normalized;
         float distToNextWaypoint = Vector3.Distance(transform.position, nextWaypoint.position);
@@ -44,6 +45,7 @@ public class Enemy : MonoBehaviour
         MaybeFlipSprite(vectorToMove);
         transform.Translate(vectorToMove, Space.World);
         TotalDistanceTraveled += vectorToMove.magnitude;
+      }
     }
 
     void Update() {
