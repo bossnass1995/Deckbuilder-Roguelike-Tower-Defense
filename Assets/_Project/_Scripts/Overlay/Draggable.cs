@@ -13,6 +13,7 @@ public class Draggable :
   [SerializeField] private GameObject towerState;
   [SerializeField] private GameObject cardState;
   [SerializeField] private Overlay overlay;
+  [SerializeField] private Hand hand;
 
   public void Awake() {
     cardCanvasGroup = GetComponent<CanvasGroup>();
@@ -50,6 +51,11 @@ public class Draggable :
   public void MoveCardState() {
     cardState.SetActive(true);
     towerState.SetActive(false);
+  }
+
+  public void Cancel() {
+    ChangeDraggableState();
+    transform.SetParent(hand.transform);
   }
 
   public void ChangeDraggableState(bool placeTroop = false) {
