@@ -14,6 +14,7 @@ public class Draggable :
   [SerializeField] private GameObject cardState;
   [SerializeField] private Overlay overlay;
   [SerializeField] private Hand hand;
+  [SerializeField] private Grid grid;
 
   public void Awake() {
     cardCanvasGroup = GetComponent<CanvasGroup>();
@@ -26,6 +27,7 @@ public class Draggable :
     cardCanvasGroup.alpha = 0.6f;
     this.transform.SetParent(draggingZone.transform);
     overlay.HideOverlay();
+    grid.ShowGrid();
   }
 
   public void OnDrag(PointerEventData eventData) {
@@ -37,6 +39,7 @@ public class Draggable :
     cardCanvasGroup.blocksRaycasts = true;
     cardCanvasGroup.alpha = 1f;
     overlay.ShowOverlay();
+    grid.HideGrid();
   }
 
   public void OnPointerDown(PointerEventData eventData) {

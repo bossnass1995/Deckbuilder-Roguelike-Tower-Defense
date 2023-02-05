@@ -18,6 +18,9 @@ public class DropZone :
 
   private void Awake() {
     dropZoneBackground = this.transform.GetComponent<Image>();
+    if (dropZoneBackground == null) {
+      dropZoneBackground = this.transform.GetChild(0).GetComponent<Image>();
+    }
   }
 
   public void OnDrop(PointerEventData eventData) {
