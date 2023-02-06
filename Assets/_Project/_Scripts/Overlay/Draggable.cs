@@ -10,10 +10,11 @@ public class Draggable :
   [SerializeField] private Canvas canvas;
   [SerializeField] private GameObject draggingZone;
   private CanvasGroup cardCanvasGroup;
-  [SerializeField] private GameObject towerState;
-  [SerializeField] private GameObject cardState;
+  [SerializeField] public GameObject towerState;
+  [SerializeField] public GameObject cardState;
   [SerializeField] private Overlay overlay;
   [SerializeField] private Hand hand;
+  [SerializeField] private DiscardZone discard;
   [SerializeField] private Grid grid;
 
   public void Awake() {
@@ -22,7 +23,6 @@ public class Draggable :
   }
 
   public void OnBeginDrag(PointerEventData eventData) {
-    Debug.Log("OnBeginDrag");
     cardCanvasGroup.blocksRaycasts = false;
     cardCanvasGroup.alpha = 0.6f;
     this.transform.SetParent(draggingZone.transform);
@@ -35,7 +35,6 @@ public class Draggable :
   }
 
   public void OnEndDrag(PointerEventData eventData) {
-    Debug.Log("OnEndDrag");
     cardCanvasGroup.blocksRaycasts = true;
     cardCanvasGroup.alpha = 1f;
     overlay.ShowOverlay();
@@ -43,7 +42,7 @@ public class Draggable :
   }
 
   public void OnPointerDown(PointerEventData eventData) {
-    Debug.Log("OnPointerDown");
+    // Debug.Log("OnPointerDown");
   }
 
   public void PlaceTroopState() {
@@ -59,6 +58,12 @@ public class Draggable :
   public void Cancel() {
     ChangeDraggableState();
     transform.SetParent(hand.transform);
+  }
+
+  public void Discard() {
+    ChangeDraggableState();
+    transform.SetParent(discard.transform);
+    transform.position = discard.transform.position;
   }
 
   public void ChangeDraggableState(bool placeTroop = false) {

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Hand :
-    MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public class Hand : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
   private Animator anim;
 
@@ -40,5 +39,4 @@ public class Hand :
       anim?.SetBool("Opened", false);
     }
   }
-
 }
