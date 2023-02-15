@@ -30,9 +30,9 @@ public abstract class DropZone :
     if (eventData.pointerDrag != null) {
       OnPointerEnterHandler(eventData);
       dropZoneBackground.color = hoverColor;
-      var draggable = eventData.pointerDrag;
-      if (draggable != null) {
-        draggable.GetComponent<Draggable>()?.ChangeDraggableState(PlacesTroop());
+      var card = eventData.pointerDrag;
+      if (card != null) {
+        card.GetComponent<Card>()?.ChangeDraggableState(PlacesTroop());
       }
     }
   }

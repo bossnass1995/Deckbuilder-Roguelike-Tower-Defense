@@ -11,7 +11,7 @@ public class TowerPlacer : MonoBehaviour {
       var uiPosition = new Vector3(tower.posX, tower.posY, 1f);
       var position = Camera.main.ScreenToWorldPoint(uiPosition);
       Debug.Log("UI Position " + uiPosition + ", World Position " + position);
-      Instantiate(towerPrefab, position, Quaternion.identity, this.gameObject.transform.parent);
+      Instantiate(tower.tower, position, Quaternion.identity, this.gameObject.transform.parent);
     });
   }
 }

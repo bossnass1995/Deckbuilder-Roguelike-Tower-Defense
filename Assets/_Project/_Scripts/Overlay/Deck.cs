@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour {
 
-  private List<Card> deck;
+  List<Card> deck;
 
+
+  [SerializeField] Overlay overlay;
   [SerializeField] Hand hand;
+  [SerializeField] DiscardZone discard;
+  [SerializeField] Grid grid;
 
-  [SerializeField] private Card BALLISTA;
-  [SerializeField] private Card KRAKAPULT;
+  // Hardcoded card prefabs
+  [SerializeField] Card BALLISTA;
+  [SerializeField] Card KRAKAPULT;
 
   /**
   Deck rules:
@@ -25,6 +30,7 @@ public class Deck : MonoBehaviour {
 
   public void Awake() {
     // For now we are going to hardcode one deck. In the future, the deck will be injected based on a deck builder
+    Debug.Log("Starting game and filling deck");
     deck = new List<Card>();
     deck.Add(BALLISTA);
     deck.Add(KRAKAPULT);
@@ -32,9 +38,6 @@ public class Deck : MonoBehaviour {
     var card1 = Draw();
     var card2 = Draw();
     var card3 = Draw();
-    card1.gameObject.transform.SetParent(hand.transform);
-    card2.gameObject.transform.SetParent(hand.transform);
-    card3.gameObject.transform.SetParent(hand.transform);
   }
 
   public void Shuffle() {
@@ -48,8 +51,14 @@ public class Deck : MonoBehaviour {
 
   public Card Draw() {
     if (deck.Count > 0) {
-      var card = deck[0];
-      deck.Remove(card);
+      var prefab = deck[0];
+      deck.Remove(prefab);
+      var card = Instantiate(prefab, Vector3.one, Quaternion.identity);
+      card.gameObject.transform.SetParent(hand.transform);
+      card.overlay = overlay;
+      card.hand = hand;
+      card.discard = discard;
+      card.grid = grid;
       return card;
     }
     return null;

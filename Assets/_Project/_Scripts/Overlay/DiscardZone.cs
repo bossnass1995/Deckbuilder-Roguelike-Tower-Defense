@@ -6,9 +6,9 @@ using UnityEngine.EventSystems;
 public class DiscardZone : DropZone {
 
   public override void OnDropHandler(PointerEventData eventData) {
-    var draggable = eventData.pointerDrag.GetComponent<RectTransform>();
-    draggable.SetParent(this.transform);
-    draggable.position = this.transform.position;
+    var card = eventData.pointerDrag.GetComponent<RectTransform>();
+    card.SetParent(this.transform);
+    card.position = this.transform.position;
   }
 
   public override void OnPointerEnterHandler(PointerEventData eventData) {
