@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class CancelZone : DropZone {
   public override void OnDropHandler(PointerEventData eventData) {
     ResetSize();
-    eventData.pointerDrag.GetComponent<Draggable>()?.Cancel();
+    eventData.pointerDrag.GetComponent<Card>()?.Cancel();
   }
 
   public override void OnPointerEnterHandler(PointerEventData eventData) {

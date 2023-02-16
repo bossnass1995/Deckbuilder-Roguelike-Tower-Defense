@@ -12,19 +12,19 @@ public class GridSlot : DropZone {
   }
 
   public override void OnDropHandler(PointerEventData eventData) {
-    var draggable = eventData.pointerDrag.GetComponent<Draggable>();
+    var card = eventData.pointerDrag.GetComponent<Card>();
     if (slotTaken) {
-      draggable?.Cancel();
+      card?.Cancel();
       return;
     }
-    draggable.transform.position = this.transform.position;
-    Debug.Log(draggable.transform.position);
-    Debug.Log(draggable.transform.localPosition);
-    var worldPosition = draggable.transform.localToWorldMatrix.GetPosition();
+    card.transform.position = this.transform.position;
+    Debug.Log(card.transform.position);
+    Debug.Log(card.transform.localPosition);
+    var worldPosition = card.transform.localToWorldMatrix.GetPosition();
     Debug.Log(worldPosition);
-    CommunicationBridge.INSTANCE.CreateTower(new TowerDTO(draggable.towerState, draggable.transform.position.x, draggable.transform.position.y));
+    CommunicationBridge.INSTANCE.CreateTower(new TowerDTO(card.towerState, card.transform.position.x, card.transform.position.y));
     slotTaken = true;
-    draggable?.Discard();
+    card?.Discard();
   }
 
   public override void OnPointerEnterHandler(PointerEventData eventData) {
